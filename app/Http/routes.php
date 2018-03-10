@@ -11,5 +11,15 @@
 |
 */
 
+Route::get('/', function() {
+	return view('welcom');
+});
+
+//ユーザ登録
 Route::get('signup', 'Auth\AuthController@getRegister')->name('signup.get');
 Route::post('signup', 'Auth\AuthController@posttRegister')->name('signup.post');
+
+// ログイン認証
+Route::get('login', 'Auth\AuthController@getLogin')->name('login.get');
+Route::post('login', 'Auth\AuthController@postLogin')->name('login.post');
+Route::post('logout', 'Auth\AuthController@getLogout')->name('logout.get');
