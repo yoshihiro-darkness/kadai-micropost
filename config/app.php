@@ -145,6 +145,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+	//add
+	Collective\Html\HtmlServiceProficer::class,
+
     ],
 
     /*
@@ -192,6 +195,10 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+	//add
+	'Form' => Collective\Html\::class,
+	'Form' => Collective\Html\FormFacade::class,
+	'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 
