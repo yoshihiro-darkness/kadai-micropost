@@ -13,11 +13,19 @@ class UsersController extends Controller
 {
 	public function index()
 	{
+		$data = []; //add
+		$user = \Auth::user(); //add
 		$users = User::paginate(10);
-	
-		return view('users.index', [
+
+		$data = [
+			'user' => $user,
 			'users' => $users,
-		]);
+		]; //add
+	
+//		return view('users.index', [
+//			'users' => $users,
+//		]);
+		return view('users.index', $data); //add
 	}
 
 	public function show($id)
@@ -62,14 +70,17 @@ class UsersController extends Controller
 
 		return view('users.followers', $data);
 	}
+
 	public function favoritings($id)
 	{
 		$user = User::find($id);
 		$favoritings = $user->favoritings()->paginate(10);
+		//$microposts = $user->favoritings()->paginate(10);
 
 		$data = [
 			'user' => $user,
-			'users' => $favoritings,
+			//'users' => $favoritings,
+			'microposts' => $favoritings,
 		];
 
 		$data += $this->counts($user);	

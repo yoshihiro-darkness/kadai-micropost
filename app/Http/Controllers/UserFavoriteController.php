@@ -35,9 +35,9 @@ class UserFavoriteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request, $mId)
     {
-       	\Auth::user()->favorite($id);
+       	\Auth::user()->favorite($mId);
 		return redirect()->back(); 
     }
 
@@ -81,9 +81,26 @@ class UserFavoriteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($mId)
     {
-       	\Auth::user()->unfavorite($id);
+       	\Auth::user()->unfavorite($mId);
 		return redirect()->back(); 
     }
+/**
+	public function favoritings($mId)
+	{
+		//$user = User::find($mId);
+		$user = \Auth::user();
+		$favoritings = $user->favoritings()->paginate(10);
+
+		$data = [
+			'user' => $user,
+			'users' => $favoritings,
+		];
+
+		$data += $this->counts($user);	
+
+		return view('users.favoritings', $data);
+	}
+*/
 }
